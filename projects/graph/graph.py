@@ -34,14 +34,37 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        traverse_queue = Queue()
+        current_vertex = starting_vertex
+        visited_nodes = []
+
+        while current_vertex != None:
+            for v in self.vertices[current_vertex]:
+                if v not in visited_nodes:
+                    traverse_queue.enqueue(v)
+            visited_nodes.append(current_vertex)
+            current_vertex = traverse_queue.dequeue()
+
+        print(visited_nodes)
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        traverse_stack = Stack()
+        current_vertex = starting_vertex
+        visited_nodes = []
+
+        while current_vertex != None:
+            if current_vertex not in visited_nodes:
+                visited_nodes.append(current_vertex)
+                for v in self.vertices[current_vertex]:
+                    if v not in visited_nodes:
+                        traverse_stack.push(v)
+            current_vertex = traverse_stack.pop()
+
+        print(visited_nodes)
 
     def dft_recursive(self, starting_vertex):
         """
@@ -56,7 +79,7 @@ class Graph:
         """
         Return a list containing the shortest path from
         starting_vertex to destination_vertex in
-        breath-first order.
+        breadth-first order.
         """
         pass  # TODO
 
@@ -121,7 +144,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    # graph.bft(1)
+    graph.bft(1)
 
     '''
     Valid DFT paths:
@@ -130,7 +153,7 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    # graph.dft(1)
+    graph.dft(1)
     # graph.dft_recursive(1)
 
     '''
